@@ -73,15 +73,14 @@ def listener(*messages):
                 start = types.ReplyKeyboardMarkup()
                 start.row('Hash','Password')
                 tb.send_message(chatid,'Select one option',reply_markup=start)
-            print ('User: '+str(chatid)+' Text: '+text+' user.msg: '+user.msg)      #Debug only. Will be removed soon.
+            #print ('User: '+str(chatid)+' Text: '+text+' user.msg: '+user.msg)      #Debug only. 
             user.LastMessage(user,text)
         elif m.content_type != 'text': tb.send_message(chatid,'Please, send me only text.')
         else:
             user = User(chatid,text)
             users[chatid] = user
             Start(chatid,text)
-        #print(' ')
-
+            
 def Start(chatid,text):
     start = types.ReplyKeyboardMarkup()
     start.row('Hash','Password')
@@ -99,6 +98,7 @@ def PassGen(size,chars):
         size=int(size)
         if size > 100: size = 100
         elif size < 0: size = size*(-1)
+        elif size == 0: size = 8
         return ''.join(random.choice(chars) for _ in range(size))
     except:
         return 'I was expecting an integer.'
