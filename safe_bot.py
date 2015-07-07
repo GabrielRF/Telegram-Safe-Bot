@@ -21,9 +21,11 @@ class User:
 def listener(*messages):
     for m in messages:
         chatid = m.chat.id
-        text = m.text
         user = None
-        if users.has_key(chatid):
+        if m.content_type == 'text':
+            text = m.text
+            text = text.encode('utf-8')
+        if users.has_key(chatid) and m.content_type == 'text':
             user = users.get(chatid)
             if text == '/start':
                 start = types.ReplyKeyboardMarkup()
@@ -62,17 +64,18 @@ def listener(*messages):
                 password.row('Letters, numbers and special characters')
                 tb.send_message(chatid,'Choose the alfabet',reply_markup=password)
             elif text == 'Letters only' or text == 'Numbers only' or text == 'Letters and numbers' or text == 'Letters, numbers and special characters':
-                tb.send_message(chatid,'Now send me the length',reply_markup=markuphide)
-            elif user.msg == 'Letters only': tb.send_message(chatid,PassGen(int(text),string.ascii_uppercase+string.ascii_lowercase))
-            elif user.msg == 'Numbers only': tb.send_message(chatid,PassGen(int(text),string.digits))
-            elif user.msg == 'Letters and numbers': tb.send_message(chatid,PassGen(int(text),string.ascii_uppercase+string.ascii_lowercase+string.digits))
-            elif user.msg == 'Letters, numbers and special characters': tb.send_message(chatid,PassGen(int(text),string.ascii_uppercase+string.ascii_lowercase+string.digits+string.punctuation))
+                tb.send_message(chatid,'Now send me the length (up to 100)',reply_markup=markuphide)
+            elif user.msg == 'Letters only': tb.send_message(chatid,PassGen(text,string.ascii_uppercase+string.ascii_lowercase))
+            elif user.msg == 'Numbers only': tb.send_message(chatid,PassGen(text,string.digits))
+            elif user.msg == 'Letters and numbers': tb.send_message(chatid,PassGen(text,string.ascii_uppercase+string.ascii_lowercase+string.digits))
+            elif user.msg == 'Letters, numbers and special characters': tb.send_message(chatid,PassGen(text,string.ascii_uppercase+string.ascii_lowercase+string.digits+string.punctuation))
             else:
                 start = types.ReplyKeyboardMarkup()
                 start.row('Hash','Password')
                 tb.send_message(chatid,'Select one option',reply_markup=start)
             print ('User: '+str(chatid)+' Text: '+text+' user.msg: '+user.msg)      #Debug only. Will be removed soon.
             user.LastMessage(user,text)
+        elif m.content_type != 'text': tb.send_message(chatid,'Please, send me only text.')
         else:
             user = User(chatid,text)
             users[chatid] = user
@@ -92,8 +95,12 @@ def SHA256(chatid,text): return hashlib.sha256(text).hexdigest()
 def SHA384(chatid,text): return hashlib.sha384(text).hexdigest()
 def SHA512(chatid,text): return hashlib.sha512(text).hexdigest()
 def PassGen(size,chars):
-    return ''.join(random.choice(chars) for _ in range(size))
-
+    try:
+        size=int(size)
+        if size > 100: size = 100
+        return ''.join(random.choice(chars) for _ in range(size))
+    except:
+        return 'I was expecting an integer.'
 
 tb = telebot.TeleBot(TOKEN)
 tb.set_update_listener(listener)
