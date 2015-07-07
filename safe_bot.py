@@ -5,6 +5,7 @@ from telebot import types
 import hashlib
 import string
 import random
+import time
 
 TOKEN = sys.argv[1]
 users = {}
@@ -98,4 +99,4 @@ tb = telebot.TeleBot(TOKEN)
 tb.set_update_listener(listener)
 tb.polling()
 while True:
-    pass
+    time.sleep(20)
