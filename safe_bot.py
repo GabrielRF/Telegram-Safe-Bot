@@ -36,12 +36,13 @@ def listener(*messages):
                 cancel.row('/start','/info')
                 tb.send_message(chatid,'Done',reply_markup=cancel)
             elif text == '/info':
-                info = ('This bot is under development!\n'
+                info = ('This bot is under constant development!\n'
                 'If you have any question or suggestion,\n'
                 'please, talk to me!\nTwitter: grfgabriel\n'
                 'Telegram: @GabrielRF\n'
                 '\nCode available on GitHub:\n'
-                'https://github.com/GabrielRF/Telegram-Safe-Bot')
+                'https://github.com/GabrielRF/Telegram-Safe-Bot\n'
+                '\nRate the bot:\nhttps://telegram.me/storebot?start=safe_bot')
                 tb.send_message(chatid,info)
             elif text == 'Hash':
                 hash = types.ReplyKeyboardMarkup()
