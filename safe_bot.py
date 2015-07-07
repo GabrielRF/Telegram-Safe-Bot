@@ -32,37 +32,27 @@ def listener(*messages):
                 cancel.row('/start','/info')
                 tb.send_message(chatid,'Done',reply_markup=cancel)
             elif text == '/info':
-                tb.send_message(chatid,'This bot is under development!\nIf you have any question or suggetion,\nplease, talk to me!\nTwitter: grfgabriel\nTelegram: @GabrielRF\n\nThe source code will soon be available on GitHub')
+                info = ('This bot is under development!\n'
+                'If you have any question or suggestion,\n'
+                'please, talk to me!\nTwitter: grfgabriel\n'
+                'Telegram: @GabrielRF\n'
+                '\nCode available on GitHub:\n'
+                'https://github.com/GabrielRF/Telegram-Safe-Bot')
+                tb.send_message(chatid,info)
             elif text == 'Hash':
                 hash = types.ReplyKeyboardMarkup()
                 hash.row('MD5','SHA1','SHA224')
                 hash.row('SHA256','SHA384','SHA512')
                 tb.send_message(chatid,'Choose one Hash algorithm',reply_markup=hash)
-            elif text == 'MD5':
+            elif (text == 'MD5' or text == 'SHA1' or text == 'SHA224' or text == 'SHA256' or text == 'SHA384' or text == 'SHA512'):
                 tb.send_message(chatid,'Now send the message',reply_markup=markuphide)
-                text = 'HASH MD5'
-            elif text == 'SHA1':
-                tb.send_message(chatid,'Now send the message',reply_markup=markuphide)
-                text = 'HASH SHA1'
-            elif text == 'SHA224':
-                tb.send_message(chatid,'Now send the message',reply_markup=markuphide)
-                text = 'HASH SHA224'
-            elif text == 'SHA256':
-                tb.send_message(chatid,'Now send the message',reply_markup=markuphide)
-                text = 'HASH SHA256'
-            elif text == 'SHA384':
-                tb.send_message(chatid,'Now send the message',reply_markup=markuphide)
-                text = 'HASH SHA384'
-            elif text == 'SHA512':
-                tb.send_message(chatid,'Now send the message',reply_markup=markuphide)
-                text = 'HASH SHA512'
+                text = 'HASH '+text
             elif user.msg == 'HASH MD5': tb.send_message(chatid,MD5(chatid,text))
             elif user.msg == 'HASH SHA1':tb.send_message(chatid,SHA1(chatid,text))
             elif user.msg == 'HASH SHA224':tb.send_message(chatid,SHA224(chatid,text))
             elif user.msg == 'HASH SHA256':tb.send_message(chatid,SHA256(chatid,text))
             elif user.msg == 'HASH SHA384':tb.send_message(chatid,SHA384(chatid,text))
             elif user.msg == 'HASH SHA512':tb.send_message(chatid,SHA512(chatid,text))
-
             elif text == 'Password':
                 password = types.ReplyKeyboardMarkup()
                 password.row('Letters only','Numbers only')
@@ -73,7 +63,7 @@ def listener(*messages):
                 start = types.ReplyKeyboardMarkup()
                 start.row('Hash','Password')
                 tb.send_message(chatid,'Select one option',reply_markup=start)
-            print ('User: '+str(chatid)+' Text: '+text+' user.msg: '+user.msg) #Debug only. Will be removed soon.
+            print ('User: '+str(chatid)+' Text: '+text+' user.msg: '+user.msg)      #Debug only. Will be removed soon.
             user.LastMessage(user,text)
             #tb.send_message(chatid,'Send /start to reset')
         else:
