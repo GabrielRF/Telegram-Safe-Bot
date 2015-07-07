@@ -63,6 +63,9 @@ def listener(*messages):
             elif text == 'Letters only' or text == 'Numbers only' or text == 'Letters and numbers' or text == 'Letters, numbers and special characters':
                 tb.send_message(chatid,'Now send me the length',reply_markup=markuphide)
             elif user.msg == 'Letters only': tb.send_message(chatid,PassGen(int(text),string.ascii_uppercase+string.ascii_lowercase))
+            elif user.msg == 'Numbers only': tb.send_message(chatid,PassGen(int(text),string.digits))
+            elif user.msg == 'Letters and numbers': tb.send_message(chatid,PassGen(int(text),string.ascii_uppercase+string.ascii_lowercase+string.digits))
+            elif user.msg == 'Letters, numbers and special characters': tb.send_message(chatid,PassGen(int(text),string.ascii_uppercase+string.ascii_lowercase+string.digits+string.punctuation))
             else:
                 start = types.ReplyKeyboardMarkup()
                 start.row('Hash','Password')
