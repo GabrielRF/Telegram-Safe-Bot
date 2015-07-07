@@ -19,8 +19,8 @@ To run it on the background, simply add `&` to the end of the line.
 * Dynamic menus
 * Hash function working with texts
 * Password creation defined by alphabet
+* Password creation with length defined by the user
 
 #####To do
 * Add Get Except to the user input
 * Hash on images/files
-* Password creation with length defined by the user
