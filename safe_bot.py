@@ -3,6 +3,8 @@ import sys
 import telebot
 from telebot import types
 import hashlib
+import string
+import random
 
 TOKEN = sys.argv[1]
 users = {}
@@ -10,7 +12,6 @@ markuphide = types.ReplyKeyboardHide()
 
 class User:
     def __init__(self,chatid,text):
-        #print ('Criado')
         self.id = chatid
         self.msg = '/start'
     def LastMessage(self,chatid,text):
@@ -59,13 +60,15 @@ def listener(*messages):
                 password.row('Letters and numbers')
                 password.row('Letters, numbers and special characters')
                 tb.send_message(chatid,'Choose the alfabet',reply_markup=password)
+            elif text == 'Letters only' or text == 'Numbers only' or text == 'Letters and numbers' or text == 'Letters, numbers and special characters':
+                tb.send_message(chatid,'Now send me the length',reply_markup=markuphide)
+            elif user.msg == 'Letters only': tb.send_message(chatid,PassGen(int(text),string.ascii_uppercase+string.ascii_lowercase))
             else:
                 start = types.ReplyKeyboardMarkup()
                 start.row('Hash','Password')
                 tb.send_message(chatid,'Select one option',reply_markup=start)
             print ('User: '+str(chatid)+' Text: '+text+' user.msg: '+user.msg)      #Debug only. Will be removed soon.
             user.LastMessage(user,text)
-            #tb.send_message(chatid,'Send /start to reset')
         else:
             user = User(chatid,text)
             users[chatid] = user
@@ -84,10 +87,12 @@ def SHA224(chatid,text): return hashlib.sha224(text).hexdigest()
 def SHA256(chatid,text): return hashlib.sha256(text).hexdigest()
 def SHA384(chatid,text): return hashlib.sha384(text).hexdigest()
 def SHA512(chatid,text): return hashlib.sha512(text).hexdigest()
+def PassGen(size,chars):
+    return ''.join(random.choice(chars) for _ in range(size))
 
 
 tb = telebot.TeleBot(TOKEN)
-tb.set_update_listener(listener) #register listener
+tb.set_update_listener(listener)
 tb.polling()
 while True:
     pass
