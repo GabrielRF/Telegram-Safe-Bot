@@ -18,6 +18,7 @@ To run it on the background, simply add `&` to the end of the line.
 #####Done
 * Dynamic menus
 * Hash function working with texts
+* Add Get Except to the user input
 
 #####To do
 * Hash on images/files
