@@ -98,6 +98,7 @@ def PassGen(size,chars):
     try:
         size=int(size)
         if size > 100: size = 100
+        elif size < 0: size = size*(-1)
         return ''.join(random.choice(chars) for _ in range(size))
     except:
         return 'I was expecting an integer.'
