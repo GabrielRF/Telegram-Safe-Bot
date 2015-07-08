@@ -30,13 +30,13 @@ To run it on the background, simply add `&` to the end of the line.
 I know that eternnoir/pyTelegramBotAPI suggests using
 ```
 bot.polling()
-  while True: # Don't end the main thread.
-    pass
+while True: # Don't end the main thread.
+  pass
 ```
 
 But I prefer to use it a little bit different to maintain the server's load as low as possible.
 ```
 tb.polling()
 while True:
-    time.sleep(20)
+  time.sleep(20)
 ```
