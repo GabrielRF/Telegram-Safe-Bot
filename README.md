@@ -19,6 +19,7 @@ To run it on the background, simply add `&` to the end of the line.
 #####Disclaimer
 This bot does not log access! It gathers information for analytical and performance studies only.
 
+---
 #####Done
 * Dynamic menus
 * Hash function working with texts
@@ -33,7 +34,6 @@ This bot does not log access! It gathers information for analytical and performa
 #####Observations
 The analytics data gathering was adapted from 
 https://github.com/Kondra007/Telegram-Parse.com-Analytics
-
 ===
 I know that eternnoir/pyTelegramBotAPI suggests using
 ```
