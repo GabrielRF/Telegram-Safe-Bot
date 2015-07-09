@@ -90,6 +90,7 @@ def listener(*messages):
             elif user.msg == 'HASH SHA384':tb.send_message(chatid,SHA384(chatid,text))
             elif user.msg == 'HASH SHA512':tb.send_message(chatid,SHA512(chatid,text))
             elif text == 'Password':
+                update_analytics(chatid, 'Password')
                 password = types.ReplyKeyboardMarkup()
                 password.row('Letters only','Numbers only')
                 password.row('Letters and numbers')
