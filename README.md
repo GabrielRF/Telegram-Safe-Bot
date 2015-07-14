@@ -40,14 +40,14 @@ https://github.com/Kondra007/Telegram-Parse.com-Analytics
 ===
 I know that eternnoir/pyTelegramBotAPI suggests using
 ```
-bot.polling()
+bot.polling(True)
 while True: # Don't end the main thread.
   pass
 ```
 
 But I prefer to use it a little bit different to maintain the server's load as low as possible.
 ```
-tb.polling()
+tb.polling(True)
 while True:
   time.sleep(20)
 ```

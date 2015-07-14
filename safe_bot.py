@@ -45,7 +45,8 @@ class User:
     def LastMessage(self,chatid,text):
         #print ('self.msg: '+text)
         self.msg = text
-def listener(*messages):
+        
+def listener(messages):
     for m in messages:
         chatid = m.chat.id
         user = None
