@@ -1,5 +1,5 @@
 # Telegram-Safe-Bot
-**Beta version**
+**Discontinued**
 
 Telegram Bot available at www.telegram.me/Safe_Bot
 
