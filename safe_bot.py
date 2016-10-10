@@ -1,5 +1,7 @@
 import configparser
 import hashlib
+import random
+import string
 import telebot
 from telebot import types
 
@@ -41,6 +43,32 @@ if __name__ == '__main__':
     menu_pwd.row(btn_pwd_let, btn_pwd_num)
     menu_pwd.row(btn_pwd_l_n)
     menu_pwd.row(btn_pwd_lnc)
+
+    def PassGen(size, chars):
+        try:
+            size=int(size)
+            if size > 100: size = 100
+            elif size < 0: size = size*(-1)
+            elif size == 0: size = 8
+            return ''.join(random.choice(chars) for _ in range(size))
+        except:
+            return 'I was expecting an integer.'
+
+    def pwd_let(message):
+        digest = PassGen(message.text, string.ascii_uppercase+string.ascii_lowercase)
+        bot.send_message(message.from_user.id, digest)
+
+    def pwd_num(message):
+        digest = PassGen(message.text, string.digits)
+        bot.send_message(message.from_user.id, digest)
+
+    def pwd_l_n(message):
+        digest = PassGen(message.text, string.ascii_uppercase+string.ascii_lowercase+string.digits)
+        bot.send_message(message.from_user.id, digest)
+
+    def pwd_lnc(message):
+        digest = PassGen(message.text, string.ascii_uppercase+string.ascii_lowercase+string.digits+string.punctuation)
+        bot.send_message(message.from_user.id, digest)
 
     def hash_md5(message):
         digest = hashlib.md5(message.text.encode('utf-8')).hexdigest()
@@ -119,19 +147,27 @@ if __name__ == '__main__':
 
     @bot.callback_query_handler(lambda q: q.data == 'let')
     def let(message):
-        pass
+        msg = bot.send_message(message.from_user.id, size_txt,
+            parse_mode='HTML')
+        bot.register_next_step_handler(msg, pwd_let)
 
     @bot.callback_query_handler(lambda q: q.data == 'num')
     def num(message):
-        pass
+        msg = bot.send_message(message.from_user.id, size_txt,
+            parse_mode='HTML')
+        bot.register_next_step_handler(msg, pwd_num)
 
     @bot.callback_query_handler(lambda q: q.data == 'l_n')
     def l_n(message):
-        pass
+        msg = bot.send_message(message.from_user.id, size_txt,
+            parse_mode='HTML')
+        bot.register_next_step_handler(msg, pwd_l_n)
 
     @bot.callback_query_handler(lambda q: q.data == 'lnc')
     def lnc(message):
-        pass
+        msg = bot.send_message(message.from_user.id, size_txt,
+            parse_mode='HTML')
+        bot.register_next_step_handler(msg, pwd_lnc)
 
     bot.polling(none_stop=True)
 
