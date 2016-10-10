@@ -17,6 +17,7 @@ if __name__ == '__main__':
     hash_txt = config['SAFEBOT']['HASH']
     text_txt = config['SAFEBOT']['TEXT']
     size_txt = config['SAFEBOT']['SIZE']
+    info_txt = config['SAFEBOT']['INFO']
 
     bot = telebot.TeleBot(TOKEN)
 
@@ -94,7 +95,12 @@ if __name__ == '__main__':
         digest = hashlib.sha512(message.text.encode('utf-8')).hexdigest()
         bot.send_message(message.from_user.id, digest)
 
-    @bot.message_handler(commands=['start'])
+    @bot.message_handler(commands=['info'])
+    def start(message):
+        msg = bot.send_message(message.from_user.id, info_txt,
+            parse_mode='HTML', disable_web_page_preview=True)
+
+    @bot.message_handler(commands=['start','cancel'])
     def start(message):
         msg = bot.send_message(message.from_user.id, start_txt, 
             parse_mode='HTML', reply_markup=menu_start)
