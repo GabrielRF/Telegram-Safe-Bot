@@ -4,4 +4,5 @@ python: "3.4"
 install: "pip3 install -r requirements.txt"
 before_script: "pip3 install -r requests"
 script: "python3 safe_bot.py"
-notifications: email: false
+notifications: 
+  email: false
