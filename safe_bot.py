@@ -10,14 +10,18 @@ if __name__ == '__main__':
     config.sections()
     BOT_CONFIG_FILE = '/usr/local/bin/Telegram-Safe-Bot/bot.conf'
     config.read(BOT_CONFIG_FILE)
-    TOKEN = config['SAFEBOT']['TOKEN']
 
-    start_txt = config['SAFEBOT']['START']
-    password_txt = config['SAFEBOT']['PASSWORD']
-    hash_txt = config['SAFEBOT']['HASH']
-    text_txt = config['SAFEBOT']['TEXT']
-    size_txt = config['SAFEBOT']['SIZE']
-    info_txt = config['SAFEBOT']['INFO']
+    try:
+        TOKEN = config['SAFEBOT']['TOKEN']
+        start_txt = config['SAFEBOT']['START']
+        password_txt = config['SAFEBOT']['PASSWORD']
+        hash_txt = config['SAFEBOT']['HASH']
+        text_txt = config['SAFEBOT']['TEXT']
+        size_txt = config['SAFEBOT']['SIZE']
+        info_txt = config['SAFEBOT']['INFO']
+    except:
+        TOKEN = 'test'
+        pass
 
     bot = telebot.TeleBot(TOKEN)
 
@@ -175,5 +179,6 @@ if __name__ == '__main__':
             parse_mode='HTML')
         bot.register_next_step_handler(msg, pwd_lnc)
 
-    bot.polling(none_stop=True)
+    if TOKEN != 'test':
+        bot.polling(none_stop=True)
 
