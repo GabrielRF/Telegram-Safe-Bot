@@ -1,5 +1,7 @@
 # Telegram-Safe-Bot
 
+[![Build Status](https://travis-ci.org/GabrielRF/Telegram-Safe-Bot.svg?branch=master)](https://travis-ci.org/GabrielRF/Telegram-Safe-Bot)
+
 Telegram Bot available at www.telegram.me/Safe_Bot
 
 ## Instalation
