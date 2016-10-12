@@ -12,6 +12,8 @@ pip3 install -r requirements
 
 Open the configuration sample file, edit it as you like and save as `bot.conf`:
 
+### Parameters 
+
 `TOKEN` = Bot Token. Given by [@BotFather](https://telegram.me/BotFather)
 
 `START` = Start and Cancel message
