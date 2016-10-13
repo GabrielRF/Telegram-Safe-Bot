@@ -34,7 +34,7 @@ if __name__ == '__main__':
     btn_hash_md5 = types.InlineKeyboardButton('MD5', callback_data='md5')
     btn_hash_sha1 = types.InlineKeyboardButton('SHA1', callback_data='sha1')
     btn_hash_sha224 = types.InlineKeyboardButton('SHA224', callback_data='sha224')
-    btn_hash_sha256 = types.InlineKeyboardButton('SHA26', callback_data='sha256')
+    btn_hash_sha256 = types.InlineKeyboardButton('SHA256', callback_data='sha256')
     btn_hash_sha384 = types.InlineKeyboardButton('SHA384', callback_data='sha384')
     btn_hash_sha512 = types.InlineKeyboardButton('SHA512', callback_data='sha512')
     menu_hash.row(btn_hash_md5, btn_hash_sha1, btn_hash_sha224)
