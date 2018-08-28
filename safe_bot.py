@@ -111,70 +111,82 @@ if __name__ == '__main__':
 
     @bot.callback_query_handler(lambda q: q.data == 'password')
     def password(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, password_txt, 
             parse_mode='HTML', reply_markup=menu_pwd)
 
     @bot.callback_query_handler(lambda q: q.data == 'hash')
     def hash(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, hash_txt, 
             parse_mode='HTML', reply_markup=menu_hash)
 
     @bot.callback_query_handler(lambda q: q.data == 'md5')
     def md5(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, text_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, hash_md5)
 
     @bot.callback_query_handler(lambda q: q.data == 'sha1')
     def sha1(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, text_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, hash_sha1)
 
     @bot.callback_query_handler(lambda q: q.data == 'sha224')
     def sha224(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, text_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, hash_sha224)
 
     @bot.callback_query_handler(lambda q: q.data == 'sha256')
     def sha256(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, text_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, hash_sha256)
 
     @bot.callback_query_handler(lambda q: q.data == 'sha384')
     def sha384(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, text_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, hash_sha384)
 
     @bot.callback_query_handler(lambda q: q.data == 'sha512')
     def sha512(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, text_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, hash_sha512)
 
     @bot.callback_query_handler(lambda q: q.data == 'let')
     def let(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, size_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, pwd_let)
 
     @bot.callback_query_handler(lambda q: q.data == 'num')
     def num(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, size_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, pwd_num)
 
     @bot.callback_query_handler(lambda q: q.data == 'l_n')
     def l_n(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, size_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, pwd_l_n)
 
     @bot.callback_query_handler(lambda q: q.data == 'lnc')
     def lnc(message):
+        bot.answer_callback_query(message.id)
         msg = bot.send_message(message.from_user.id, size_txt,
             parse_mode='HTML')
         bot.register_next_step_handler(msg, pwd_lnc)
